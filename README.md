@@ -6,5 +6,8 @@ Třída vytvářející s &lt;iframe>em jednoduchý editor
     default_value: defaultni_hodnoty
   });``
 ## Metody
-  - *format*: jako parametr bere "bold", "italic", ... (viz [Document.execCommand()](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand))
+  - *format*: 
+    * jako parametr bere "bold", "italic", ... 
+    * viz [Document.execCommand()](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand)
+    * typické použití jako naslouchač na příslušné buttony
   - *getContent*: vrací obsah <iframe>u
