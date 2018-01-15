@@ -47,11 +47,11 @@ function class_SimpleEditor(def){
                 break;
             case "createLink":
                 if(getSelectionNodename()!=="A"){
-                    if(!selected_value){
+                    if(!validateLink(selected_value)){
                         selected_value= prompt("Please specify the URL link:", selected_value);
-                        if(!selected_value){
+                        if(!validateLink(selected_value)){
                             action= false;
-                            //warning_text+= " Wrong email!"
+                            //warning_text+= " Wrong URL!"
                         } else {
                             selected_value_correction= selected_value;
                         }
@@ -68,7 +68,7 @@ function class_SimpleEditor(def){
                         selected_value= prompt("Please specify the URL link of the image:", selected_value);
                         if(!selected_value){
                             action= false;
-                            //warning_text+= " Wrong email!"
+                            //warning_text+= " Wrong image!"
                         } else {
                             selected_value_correction= selected_value;
                         }
@@ -82,20 +82,28 @@ function class_SimpleEditor(def){
             default:
                 break;
         }
-        console.log(action);
         if(action) editor.execCommand(action, false, selected_value_correction);
         //else alert(warning_text);
     }
     _this.getContent= function(){
-        return editor.body.innerHTML; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE jsete BRka?
+        return editor.body.innerHTML; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE some BR cleaner?
     }
     _this.getTextContent= function(){
-        return editor.body.innerText; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE jsete BRka?
+        return editor.body.innerText; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE some BR cleaner?
     }
 
     function validateEmail(email) {
         let re= /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         return re.test(email);
+    }
+    function validateLink(str){ //https://stackoverflow.com/questions/9714525/javascript-image-url-verify
+        var pattern= new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return pattern.test(str);
     }
     function pasteHandler(e) {
         e.stopPropagation();

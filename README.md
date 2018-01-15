@@ -1,32 +1,34 @@
 # SimpleEditor
-Třída vytvářející s ```<iframe>```em jednoduchý editor
-## Vytvoření editoru
-Testováno ve všech prohlížečích.
-### v JavaScriptu
+JS class for creating very simple text/html editor combinated with ```<iframe>``` element 
+## Editor creation
+All browsers tested.
+### JavaScript
   ```javascript
-    var ja_jsem_instance= class_SimpleEditor({
-        editor_element: JS_odkaz_na_iframe,
-        default_value: defaultni_hodnoty
+    var i_am_instance= class_SimpleEditor({
+        editor_element: iframe_NODE_element,
+        default_value: default_content
     });
   ```
 
-### v HTML
+### HTML
   ```html
     <iframe id="editor" src='about:blank'></iframe>
-    <button onclick="ja_jsem_instance.format('bold');">Bold</button>
+    <button onclick="i_am_instance.format('bold');">Bold</button>
 ```
 
-## Metody
+## Methods
   - *format*(format_name): 
-    * typické použití jako naslouchač na příslušné buttony
-    * format_name= [DOMString](https://developer.mozilla.org/en-US/docs/Web/API/DOMString) název příkazu (viz 'List příkazů' dále v textu);
-  - *getContent*: vrací HTML obsah ```<iframe>```u
-  - *getTextContent*: vrací textový obsah obsah ```<iframe>```u
+    * primary for using as *onclick* listener
+    * format_name= [DOMString](https://developer.mozilla.org/en-US/docs/Web/API/DOMString) command name (i.e. 'Commands List' below);
+  - *getContent*: return ```<iframe>``` HTML content
+  - *getTextContent*: return ```<iframe>``` text content
 
-## List příkazů
-  - "**bold**", "**italic**", "**underline**": Přepíná bold/italic formát nově psaného (či vybraného textu)
-  - "**removeFormat**": zruší formátování
-  - "**insertOrderedList**", "**insertUnorderedList**", "**insertParagraph**": přidá ```<ol>```, ```<ul>```, resp. ```<p>```
-  - "**createEmail**", "**createLink**", "**insertImage**": Vytvoří/zruší email, URL link či vloží obrázek buť z vybraného textu (zapsané url adresy), případně vyskočí dotaz (prompt)
-  - "**justifyLeft**", "**justifyRight**", "**justifyCenter**", "**justifyFull**": změna zarovnání
-  - Další možnosti viz [Document.execCommand()](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand)
+## Commands List
+  - "**bold**", "**italic**", "**underline**": Toggle bold/italic format new or selected text
+  - "**removeFormat**": remove format
+  - "**insertOrderedList**", "**insertUnorderedList**", "**insertParagraph**": add ```<ol>```, ```<ul>```, or ```<p>```
+  - "**createEmail**", "**createLink**", "**insertImage**": Toggle email, URL link or create image
+    * in case of email and URL link: the link is created from selected text (if detected), or you can add link via prompt
+    * "**insertImage**": for now no detection implemented (in aditional, you must combine this with some uploader)
+  - "**justifyLeft**", "**justifyRight**", "**justifyCenter**", "**justifyFull**": alingment change
+  - Another possibilites in [Document.execCommand()](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand)
