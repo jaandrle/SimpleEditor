@@ -5,8 +5,8 @@ Testováno ve všech prohlížečích.
 ### v JavaScriptu
   ```javascript
     var ja_jsem_instance= class_SimpleEditor({
-      editor_element: JS_odkaz_na_iframe,
-      default_value: defaultni_hodnoty
+        editor_element: JS_odkaz_na_iframe,
+        default_value: defaultni_hodnoty
     });
   ```
 
@@ -14,7 +14,6 @@ Testováno ve všech prohlížečích.
   ```html
     <iframe id="editor" src='about:blank'></iframe>
     <button onclick="ja_jsem_instance.format('bold');">Bold</button>
-  });
 ```
 
 ## Metody
