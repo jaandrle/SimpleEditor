@@ -8,11 +8,13 @@ Testováno ve všech prohlížečích.
     editor_element: JS_odkaz_na_iframe,
     default_value: defaultni_hodnoty
   });```
+
 ### v HTML
   ```html
     <iframe id="editor" src='about:blank'></iframe>
     <button onclick="ja_jsem_instance.format('bold');">Bold</button>
   });```
+
 ## Metody
   - *format*(format_name): 
     * typické použití jako naslouchač na příslušné buttony
