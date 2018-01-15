@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>SimpleEditor - demonstration</title>
+    <meta name="description" content="SimpleEditor - demonstration">
+    <meta name="author" content="Jan Andrle">
+</head>
+<body>
+<iframe id="editor" src='about:blank'></iframe>
+
+<script src="SimpleEditor.js"></script>
+<script>
+    var editor= class_SimpleEditor({editor_element: document.getElementById('editor'), default_value: "<p>Default</p><p>Ahoj <a href='mailto:aa.bb@cc.dd'>Default</a></p>"});
+</script>
+<br><br>
+<button onclick="editor.format('bold');">Bold</button>
+<br>
+<button onclick="editor.format('italic');">Italic</button>
+<br>
+<button onclick="editor.format('createEmail');">createEmail</button>
+<br><br>
+<button onclick="alert(editor.getContent());">getContent</button>
+</body>
+</html>
