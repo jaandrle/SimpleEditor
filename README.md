@@ -1,9 +1,9 @@
+![IE <=9 - supported](https://img.shields.io/badge/IE%20%3C=9-supported-green.svg) ![IE >9 - tested](https://img.shields.io/badge/IE%20%3E9-tested-brightgreen.svg) ![Firefox - tested](https://img.shields.io/badge/Firefox-tested-brightgreen.svg) ![Chrome - tested](https://img.shields.io/badge/Chrome-tested-brightgreen.svg)  ![Safari - tested](https://img.shields.io/badge/Safari-tested-brightgreen.svg)
 # SimpleEditor
 JS class for creating very simple text/html editor combinated with ```<iframe>``` element.
 
 **[Actual version](https://github.com/jaandrle/SimpleEditor/releases/tag/v0.3-rc)**
 ## Editor creation
-All browsers tested.
 ### JavaScript
   ```javascript
     var i_am_instance= class_SimpleEditor({
