@@ -30,3 +30,14 @@ Testováno ve všech prohlížečích.
   - "**createEmail**", "**createLink**", "**insertImage**": Vytvoří/zruší email, URL link či vloží obrázek buť z vybraného textu (zapsané url adresy), případně vyskočí dotaz (prompt)
   - "**justifyLeft**", "**justifyRight**", "**justifyCenter**", "**justifyFull**": změna zarovnání
   - Další možnosti viz [Document.execCommand()](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand)
+
+## Registrování validátorů
+  - Například email:
+    ```javascript
+      i_am_instance.setValidationFunction("createEmail", function emailValidation(email_candidate) {
+        /*_@_*/ let e= email_candidate.split("@"); if(e.length!==2) return false;
+        /*_@_._*/ e= [e[0], ...e[1].split(".")]; if(e.length!==3) return false;
+        const _e= !/(#|\?|!|\\|\/|\||\.\.)/i.test(e[0]);
+        return _e && e.reduce((r,o)=>r&&o.length>1&&!/\s/.test(o), _e);
+      });
+    ```

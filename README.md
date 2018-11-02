@@ -34,3 +34,14 @@ JS class for creating very simple text/html editor combinated with ```<iframe>``
     * "**insertImage**": for now no detection implemented (in aditional, you must combine this with some uploader)
   - "**justifyLeft**", "**justifyRight**", "**justifyCenter**", "**justifyFull**": alingment change
   - Another possibilites in [Document.execCommand()](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand)
+
+## Register validator
+  - Email example:
+    ```javascript
+      i_am_instance.setValidationFunction("createEmail", function emailValidation(email_candidate) {
+        /*_@_*/ let e= email_candidate.split("@"); if(e.length!==2) return false;
+        /*_@_._*/ e= [e[0], ...e[1].split(".")]; if(e.length!==3) return false;
+        const _e= !/(#|\?|!|\\|\/|\||\.\.)/i.test(e[0]);
+        return _e && e.reduce((r,o)=>r&&o.length>1&&!/\s/.test(o), _e);
+      });
+    ```

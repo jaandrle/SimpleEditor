@@ -1,10 +1,11 @@
 function class_SimpleEditor(def){
-    let editor_element, default_value;
+    var version= "0.4";
+    var editor_element, default_value;
     if(def.editor_element) editor_element= def.editor_element;
     if(def.default_value) default_value= def.default_value;
-    let _this= {};
+    var _this= {}; var validators= {createLink: validateLink};
     var editor;
-    var caret_position;
+
     editor_element.contentWindow.location.reload();
     editor_element.onload= function(){
         editor= editor_element.contentDocument;
@@ -13,9 +14,10 @@ function class_SimpleEditor(def){
         editor.body.addEventListener("paste", pasteHandler);
     };
 
+    _this.version= version;
     _this.format= function(action){
         editor_element.contentWindow.focus();
-        let selected_value;
+        var selected_value;
         if(document.selection && document.selection.createRange){
             selected_value= document.selection.createRange().htmlText;
         } else if (editor.getSelection) {
@@ -23,16 +25,16 @@ function class_SimpleEditor(def){
         } else {
             selected_value= '';
         }
-        let selected_value_correction= null;
-        //let warning_text= "Error!";
+        var selected_value_correction= null;
+        //var warning_text= "Error!";
         
         switch (action){
             case "createEmail":
                 action= "createLink";
                 if(getSelectionNodename()!=="A"){
-                    if(!validateEmail(selected_value)){
+                    if(getValidationStatus("createEmail", selected_value)===1){
                         selected_value= prompt("Please specify the email:", selected_value);
-                        if(!validateEmail(selected_value)){
+                        if(getValidationStatus("createEmail", selected_value)===1){
                             action= false;
                             //warning_text+= " Wrong email!"
                         } else {
@@ -47,9 +49,9 @@ function class_SimpleEditor(def){
                 break;
             case "createLink":
                 if(getSelectionNodename()!=="A"){
-                    if(!validateLink(selected_value)){
+                    if(getValidationStatus(action, selected_value)===1){
                         selected_value= prompt("Please specify the URL link:", selected_value);
-                        if(!validateLink(selected_value)){
+                        if(getValidationStatus(action, selected_value)===1){
                             action= false;
                             //warning_text+= " Wrong URL!"
                         } else {
@@ -84,17 +86,26 @@ function class_SimpleEditor(def){
         }
         if(action) editor.execCommand(action, false, selected_value_correction);
         //else alert(warning_text);
-    }
+    };
     _this.getContent= function(){
         return editor.body.innerHTML; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE some BR cleaner?
-    }
+    };
     _this.getTextContent= function(){
         return editor.body.innerText; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE some BR cleaner?
-    }
+    };
+    _this.setValidationFunction= function(action, fun){ validators[action]= fun; };
+    _this.getValidationFunction= function(action){ return validators[action]; };
 
-    function validateEmail(email) {
-        let re= /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        return re.test(email);
+    function getValidationStatus(
+        name, /* _this.format action */
+        candidate /* value for checking */
+    ){/* return int (0,1,2):
+        0: no validation function
+        1: validation failed
+        2: validation success */
+        if(Object.keys(validators).indexOf(name)===-1) return 0;
+        if(!validators[name](candidate)) return 1;
+        return 2;
     }
     function validateLink(str){ //https://stackoverflow.com/questions/9714525/javascript-image-url-verify
         var pattern= new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -108,9 +119,9 @@ function class_SimpleEditor(def){
     function pasteHandler(e) {
         e.stopPropagation();
         e.preventDefault();
-        const pastedData= (e.clipboardData || window.clipboardData).getData('Text');
+        var pastedData= (e.clipboardData || window.clipboardData).getData('Text');
         
-        let sel, range;
+        var sel, range;
         if(editor.getSelection){
             sel= editor.getSelection();
             if (sel.getRangeAt && sel.rangeCount) {
