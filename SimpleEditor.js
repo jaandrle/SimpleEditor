@@ -1,5 +1,5 @@
 function class_SimpleEditor(def){
-    var version= "0.4";
+    var version= "0.5";
     var editor_element, default_value;
     if(def.editor_element) editor_element= def.editor_element;
     if(def.default_value) default_value= def.default_value;
