@@ -14,7 +14,9 @@
     var editor= class_SimpleEditor({editor_element: document.getElementById('editor'), default_value: "<p>Default</p><p>Ahoj <a href='mailto:aa.bb@cc.dd'>Default</a></p>"});
 </script>
 <br><br>
-<button onclick="editor.format('bold');">Bold</button>
+<button onclick="editor.format('createHeading');">H1</button>
+<br>
+<button onclick="editor.format('createHeading', 'h2');">H2</button>
 <br>
 <button onclick="editor.format('italic');">Italic</button>
 <br>

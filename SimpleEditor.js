@@ -11,11 +11,14 @@ function class_SimpleEditor(def){
         editor= editor_element.contentDocument;
         editor.body.innerHTML= default_value || "<p></p>";
         editor.designMode= "on";
-        editor.body.addEventListener("paste", pasteHandler);
+        if(editor.body){
+            if(editor.body.addEventListener) editor.body.addEventListener("paste", pasteHandler);
+            else editor.body.attachEvent("paste", pasteHandler);
+        }
     };
 
     _this.version= version;
-    _this.format= function(action){
+    _this.format= function(action, param){
         editor_element.contentWindow.focus();
         var selected_value;
         if(document.selection && document.selection.createRange){
@@ -29,6 +32,12 @@ function class_SimpleEditor(def){
         //var warning_text= "Error!";
         
         switch (action){
+            case "createHeading":
+                action= false;
+                if(!param) param= "H1";
+                else param= param.toUpperCase();
+                toggleTag(param);
+                break;
             case "createEmail":
                 action= "createLink";
                 if(getSelectionNodename()!=="A"){
@@ -116,6 +125,28 @@ function class_SimpleEditor(def){
         '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
         return pattern.test(str);
     }
+    function toggleTag(tag){
+        var pre_text= '<p>', post_text= '</p>';
+        if(getSelectionNodename()!==tag){
+            pre_text= "<"+tag+">";
+            post_text= "</"+tag+">";
+        }
+        var placeholder= "Text";
+        if(tag.charAt(0)==="H") placeholder= "Header";
+        var sel, sel_node, inserted;
+        if(editor.getSelection){
+            sel= editor.getSelection();
+            sel_node= sel.anchorNode.parentNode;
+            if(sel.type==="Range"){
+                sel_node.outerHTML= pre_text+sel_node.innerHTML+post_text;
+            } else {
+                inserted= sel_node.parentNode.insertBefore(editor.createElement(tag), sel_node.nextSibling);
+                inserted.innerText= placeholder;
+            }
+        } else if(document.selection && document.selection.type !== "Control"){// IE < 9
+            console.log(document.selection.createRange().pasteHTML(pre_text+post_text));
+        }
+    }
     function pasteHandler(e) {
         e.stopPropagation();
         e.preventDefault();
@@ -156,5 +187,5 @@ function class_SimpleEditor(def){
         return '';
       }
     }
-    return Object.freeze(_this);
+    return Object.freeze ? Object.freeze(_this): _this;
 }
