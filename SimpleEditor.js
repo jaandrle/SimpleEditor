@@ -116,14 +116,8 @@ function class_SimpleEditor(def){
         if(!validators[name](candidate)) return 1;
         return 2;
     }
-    function validateLink(str){ //https://stackoverflow.com/questions/9714525/javascript-image-url-verify
-        var pattern= new RegExp('^(https?:\\/\\/)?'+ // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-        return pattern.test(str);
+    function validateLink(str){ //https://www.regextester.com/94502
+        return /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.?)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/igm.test(str);
     }
     function toggleTag(tag){
         var pre_text= '<p>', post_text= '</p>';
