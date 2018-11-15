@@ -10,7 +10,7 @@ function class_SimpleEditor(def){
     editor_element.onload= function(){
         editor= editor_element.contentDocument;
         if(def.styles) setStyles(def.styles);
-        editor.body.innerHTML= default_value || "<p></p>";
+        editor.body.innerHTML= default_value || "<p>&nbsp;</p>";
         editor.designMode= "on";
         if(editor.body){
             if(editor.body.addEventListener) editor.body.addEventListener("paste", pasteHandler);
@@ -33,11 +33,18 @@ function class_SimpleEditor(def){
         //var warning_text= "Error!";
         
         switch (action){
-            case "createHeading":
+            case "removeTags": /* not recommended in live env */
+                action= false;
+                toggleTag({tag: "P", prev_content: "innerText"});
+                break;
+            case "createHeading": /* not recommended in live env */
                 action= false;
                 if(!param) param= "H1";
                 else param= param.toUpperCase();
-                toggleTag(param);
+                toggleTag({tag: param, placeholder: "Header"});
+                break;
+            case "underline":
+                if(getSelectionNodename()==="U") action= "removeFormat";
                 break;
             case "createEmail":
                 action= "createLink";
@@ -120,23 +127,23 @@ function class_SimpleEditor(def){
     function validateLink(str){ //https://www.regextester.com/94502
         return /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.?)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/igm.test(str);
     }
-    function toggleTag(tag){
+    function toggleTag(def){
+        if(!def) def= {};
+        if(!def.prev_content) def.prev_content= "innerHTML";
         var pre_text= '<p>', post_text= '</p>';
-        if(getSelectionNodename()!==tag){
-            pre_text= "<"+tag+">";
-            post_text= "</"+tag+">";
+        if(getSelectionNodename()!==def.tag){
+            pre_text= "<"+def.tag+">";
+            post_text= "</"+def.tag+">";
         }
-        var placeholder= "Text";
-        if(tag.charAt(0)==="H") placeholder= "Header";
         var sel, sel_node, inserted;
         if(editor.getSelection){
             sel= editor.getSelection();
             sel_node= sel.anchorNode.parentNode;
             if(sel.type==="Range"){
-                sel_node.outerHTML= pre_text+sel_node.innerHTML+post_text;
-            } else {
-                inserted= sel_node.parentNode.insertBefore(editor.createElement(tag), sel_node.nextSibling);
-                inserted.innerText= placeholder;
+                sel_node.outerHTML= pre_text+sel_node[def.prev_content]+post_text;
+            } else if(def.placeholder) {
+                inserted= sel_node.parentNode.insertBefore(editor.createElement(def.tag), sel_node.nextSibling);
+                inserted.innerText= def.placeholder;
             }
         } else if(document.selection && document.selection.type !== "Control"){// IE < 9
             console.log(document.selection.createRange().pasteHTML(pre_text+post_text));

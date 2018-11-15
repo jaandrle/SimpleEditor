@@ -18,15 +18,25 @@
     });
 </script>
 <br><br>
-<button onclick="editor.format('createHeading');">H1</button>
+
 <br>
-<button onclick="editor.format('createHeading', 'h2');">H2</button>
-<br>
-<button onclick="editor.format('italic');">Italic</button>
-<br>
-<button onclick="editor.format('createEmail');">createEmail</button>
-<br>
-<button onclick="editor.format('createLink');">createLink</button>
+<p>Format:</p>
+<p>
+    <button onclick="editor.format('underline');">"Heading"</button>
+    <button onclick="editor.format('italic');">Italic</button>
+    <button onclick="editor.format('removeFormat');">Remove Format</button>
+</p>
+<p>Links:</p>
+<p>
+    <button onclick="editor.format('createEmail');">createEmail</button>
+    <button onclick="editor.format('createLink');">createLink</button>
+</p>
+<p>Test</p>
+<p>
+    <button onclick="editor.format('removeTags');">Remove Tags</button>
+    <button onclick="editor.format('createHeading');">H1</button>
+    <button onclick="editor.format('createHeading', 'h2');">H2</button>
+</p>
 <br><br>
 <button onclick="alert(editor.getContent());">getContent</button>
 </body>
