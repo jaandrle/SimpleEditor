@@ -1,5 +1,5 @@
 function class_SimpleEditor(def){
-    var version= "0.5";
+    var version= "0.6";
     var editor_element, default_value;
     if(def.editor_element) editor_element= def.editor_element;
     if(def.default_value) default_value= def.default_value;
@@ -9,6 +9,7 @@ function class_SimpleEditor(def){
     editor_element.contentWindow.location.reload();
     editor_element.onload= function(){
         editor= editor_element.contentDocument;
+        if(def.styles) setStyles(def.styles);
         editor.body.innerHTML= default_value || "<p></p>";
         editor.designMode= "on";
         if(editor.body){
@@ -180,6 +181,14 @@ function class_SimpleEditor(def){
       else {
         return '';
       }
+    }
+    function setStyles(styles){
+        var style_el= document.createElement('style');
+        style_el.appendChild(document.createTextNode(''));
+        editor.head.appendChild(style_el);
+        styles.replace(/\r?\n/g, "")
+              .replace(/\}./g, "}|=").split("|=") /* rozsekani na pole */
+              .forEach(function(item, i){ if(item) style_el.sheet.insertRule(item, i); });
     }
     return Object.freeze ? Object.freeze(_this): _this;
 }

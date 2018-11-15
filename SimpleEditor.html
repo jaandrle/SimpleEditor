@@ -11,7 +11,11 @@
 
 <script src="SimpleEditor.js"></script>
 <script>
-    var editor= class_SimpleEditor({editor_element: document.getElementById('editor'), default_value: "<p>Default</p><p>Ahoj <a href='mailto:aa.bb@cc.dd'>Default</a></p>"});
+    var editor= class_SimpleEditor({
+        editor_element: document.getElementById('editor'),
+        default_value: "<p>Default</p><p>Ahoj <a href='mailto:aa.bb@cc.dd'>Default</a></p>",
+        styles: "i{color: green}\n"
+    });
 </script>
 <br><br>
 <button onclick="editor.format('createHeading');">H1</button>
