@@ -1,5 +1,5 @@
 function class_SimpleEditor(def){
-    var version= "0.6";
+    var version= "0.7";
     var editor_element, default_value;
     if(def.editor_element) editor_element= def.editor_element;
     if(def.default_value) default_value= def.default_value;
@@ -51,7 +51,7 @@ function class_SimpleEditor(def){
                 if(getSelectionNodename()!=="A"){
                     if(getValidationStatus("createEmail", selected_value)===1){
                         selected_value= prompt("Please specify the email:", selected_value);
-                        if(getValidationStatus("createEmail", selected_value)===1){
+                        if(!selected_value||getValidationStatus("createEmail", selected_value)===1){
                             action= false;
                             //warning_text+= " Wrong email!"
                         } else {
@@ -68,7 +68,7 @@ function class_SimpleEditor(def){
                 if(getSelectionNodename()!=="A"){
                     if(getValidationStatus(action, selected_value)===1){
                         selected_value= prompt("Please specify the URL link:", selected_value);
-                        if(getValidationStatus(action, selected_value)===1){
+                        if(!selected_value||getValidationStatus(action, selected_value)===1){
                             action= false;
                             //warning_text+= " Wrong URL!"
                         } else {
@@ -124,8 +124,9 @@ function class_SimpleEditor(def){
         if(!validators[name](candidate)) return 1;
         return 2;
     }
-    function validateLink(str){ //https://www.regextester.com/94502
-        return /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.?)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/igm.test(str);
+    function validateLink(str){
+        if(str.indexOf(".")===-1) return false;
+        return /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.?)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/igm.test(str); //https://www.regextester.com/94502
     }
     function toggleTag(def){
         if(!def) def= {};
