@@ -184,11 +184,8 @@ function class_SimpleEditor(def){
     }
     function setStyles(styles){
         var style_el= document.createElement('style');
-        style_el.appendChild(document.createTextNode(''));
+        style_el.appendChild(document.createTextNode(styles));
         editor.head.appendChild(style_el);
-        styles.replace(/\r?\n/g, "")
-              .replace(/\}./g, "}|=").split("|=") /* rozsekani na pole */
-              .forEach(function(item, i){ if(item) style_el.sheet.insertRule(item, i); });
     }
     return Object.freeze ? Object.freeze(_this): _this;
 }
