@@ -46,6 +46,9 @@ function class_SimpleEditor(def){
             case "underline":
                 if(getSelectionNodename()==="U") action= "removeFormat";
                 break;
+            case "strikeThrough":
+                if(getSelectionNodename()==="STRIKE") action= "removeFormat";
+                break;
             case "createEmail":
                 action= "createLink";
                 if(getSelectionNodename()!=="A"){
@@ -105,7 +108,7 @@ function class_SimpleEditor(def){
         //else alert(warning_text);
     };
     _this.getContent= function(){
-        return editor.body.innerHTML; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE some BR cleaner?
+        return editor.body.innerHTML.replace(/<br\/?>\s*<\//gim, "</").replace(/<[^\/>][^>]*><\/[^>]+>/gmi, "");
     };
     _this.getTextContent= function(){
         return editor.body.innerText; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE some BR cleaner?
@@ -180,6 +183,7 @@ function class_SimpleEditor(def){
           var clonedSelection=range.cloneContents();
           var div= document.createElement('div');
           div.appendChild(clonedSelection);
+          if(!div.childNodes.length) return range.startContainer.tagName;
           return div.childNodes[0].nodeName;
         }
         else {

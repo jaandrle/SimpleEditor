@@ -14,7 +14,7 @@
     var editor= class_SimpleEditor({
         editor_element: document.getElementById('editor'),
         default_value: "<p>Default</p><p>Ahoj <a href='mailto:aa.bb@cc.dd'>Default</a></p>",
-        styles: "i{color: green}\n"
+        styles: "strike{font-size: 1.25rem;text-decoration: none;}\n"
     });
 </script>
 <br><br>
@@ -22,7 +22,7 @@
 <br>
 <p>Format:</p>
 <p>
-    <button onclick="editor.format('underline');">"Heading"</button>
+    <button onclick="editor.format('strikeThrough');">"Heading"</button>
     <button onclick="editor.format('italic');">Italic</button>
     <button onclick="editor.format('removeFormat');">Remove Format</button>
 </p>
