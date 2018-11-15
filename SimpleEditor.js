@@ -16,6 +16,7 @@ function class_SimpleEditor(def){
             if(editor.body.addEventListener) editor.body.addEventListener("paste", pasteHandler);
             else editor.body.attachEvent("paste", pasteHandler);
         }
+        if(def.auto_resize===true) autoResizeArea.add(editor_element);
     };
 
     _this.version= version;
@@ -199,5 +200,33 @@ function class_SimpleEditor(def){
         style_el.appendChild(document.createTextNode(styles));
         editor.head.appendChild(style_el);
     }
+
+    var autoResizeArea= {
+        add: function(area){
+            area.setAttribute("data-original-height", area.offsetHeight);
+            area.contentDocument.body.addEventListener("click", autoResizeArea.resize);
+            area.contentDocument.body.click();
+            area.contentDocument.body.addEventListener("paste", autoResizeArea.resize);
+            area.contentDocument.body.addEventListener("cut", autoResizeArea.resize);
+            area.contentDocument.body.addEventListener("input", autoResizeArea.resize);
+            area.contentDocument.body.addEventListener("keyup", autoResizeArea.resize);
+        },
+        remove: function(area){
+            area.contentDocument.body.removeEventListener("click", autoResizeArea.resize);
+            area.contentDocument.body.removeEventListener("paste", autoResizeArea.resize);
+            area.contentDocument.body.removeEventListener("cut", autoResizeArea.resize);
+            area.contentDocument.body.removeEventListener("input", autoResizeArea.resize);
+            area.contentDocument.body.removeEventListener("keyup", autoResizeArea.resize);
+        },
+        resize: function(){
+            var area= this;
+            var minHeight= editor_element.getAttribute("data-original-height");
+            editor_element.style.height = "0";
+            var newHeight= area.scrollHeight + editor_element.offsetHeight;
+            if (minHeight > newHeight) { newHeight = minHeight; }
+            editor_element.style.height = newHeight + "px";
+        }
+    };
+
     return Object.freeze ? Object.freeze(_this): _this;
 }
