@@ -6,6 +6,7 @@ const config= {
         name: "SimpleEditor",
         version: "0.7",
         build: "0001",
+        src_folder: "src/",
         bin_folder: "bin/",
         sequence: ['javascript'] //!... pro preskoceni sequence
     },
