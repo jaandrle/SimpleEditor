@@ -21,7 +21,6 @@ function autoResizeArea(editor_element){
         add: function(){
             editor_element.setAttribute("data-original-height", editor_element.offsetHeight);
             editor_element.contentDocument.body.addEventListener("click", local_autoResizeArea.resize);
-            editor_element.contentDocument.body.click();
             editor_element.contentDocument.body.addEventListener("paste", local_autoResizeArea.resize);
             editor_element.contentDocument.body.addEventListener("cut", local_autoResizeArea.resize);
             editor_element.contentDocument.body.addEventListener("input", local_autoResizeArea.resize);
