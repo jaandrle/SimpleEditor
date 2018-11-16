@@ -1,0 +1,18 @@
+bin\class_factory.sub.js: line 142, col 10, Missing semicolon.
+
+1 error
+
+npm link gulp
+npm link gulp-util
+npm link gulp-javascript-obfuscator
+npm link gulp-replace
+npm link gulp-concat
+npm link gulp-minify
+npm link gulp-sequence
+npm link gulp-rename
+npm link gulp-stylus
+npm link gulp-sourcemaps
+npm link gulp-imagemin
+npm link gulp-clean-css
+
+npm link gulp & npm link gulp-util & npm link gulp-javascript-obfuscator & npm link gulp-replace & npm link gulp-concat & npm link gulp-minify & npm link gulp-sequence & npm link gulp-rename & npm link gulp-stylus & npm link gulp-sourcemaps & npm link gulp-imagemin & npm link gulp-clean-css

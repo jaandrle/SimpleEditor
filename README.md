@@ -6,7 +6,7 @@ JS class for creating very simple text/html editor combinated with ```<iframe>``
 ## Editor creation
 ### JavaScript
   ```javascript
-    var i_am_instance= class_SimpleEditor({
+    var i_am_instance= class_SimpleEditor.init({
         editor_element: iframe_NODE_element,
         default_value: default_content
     });
