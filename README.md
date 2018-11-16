@@ -2,7 +2,7 @@
 # SimpleEditor
 JS class for creating very simple text/html editor combinated with ```<iframe>``` element.
 
-**[Actual version](https://github.com/jaandrle/SimpleEditor/releases/tag/v0.3-rc)**
+**[Actual version](https://github.com/jaandrle/SimpleEditor/releases/tag/v0.7)**
 ## Editor creation
 ### JavaScript
   ```javascript
