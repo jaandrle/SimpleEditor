@@ -1,3 +1,5 @@
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+/* global define, module*/
 (function(module_name, factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -14,6 +16,7 @@
     return (function class_SimpleEditor(){
         var _static= {};
         //gulp.place.class_static.sub.js
+        
         _static.init= function(def){
             var _this= {};
             //gulp.place.class_factory.sub.js
