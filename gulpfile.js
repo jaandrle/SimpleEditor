@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *//* global require */
 /* \CONFIG\ */
 const config= {
     /* \APP depend consts\ */

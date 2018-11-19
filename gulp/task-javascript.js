@@ -1,4 +1,4 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true */
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *//* global module */
 module.exports= function({app, $gulp_folder, gulp, error, $g, $o, $run}){
     return function(cb){
         let cmd;
