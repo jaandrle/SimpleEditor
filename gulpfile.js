@@ -18,7 +18,7 @@ const config= {
 };
 (function(c){
     const $run= require(c.$gulp_folder+'gulp-crossplatform')();
-    const {$g,$o}= require(c.$gulp_folder+'gulp-requires')();
+    const {$g,$o}= require(c.$gulp_folder+'gulp-requires')(config.gulp);
     c.$g= $g; c.$o= $o; c.$run= $run;
 })(config);
     /* /Gulp - requires/ */

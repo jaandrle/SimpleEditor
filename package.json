@@ -1,0 +1,35 @@
+{
+  "name": "simpleeditor",
+  "version": "0.7.0",
+  "description": "![IE <=9 - supported](https://img.shields.io/badge/IE%20%3C=9-supported-green.svg) ![IE >9 - tested](https://img.shields.io/badge/IE%20%3E9-tested-brightgreen.svg) ![Firefox - tested](https://img.shields.io/badge/Firefox-tested-brightgreen.svg) ![Chrome - tested](https://img.shields.io/badge/Chrome-tested-brightgreen.svg)  ![Safari - tested](https://img.shields.io/badge/Safari-tested-brightgreen.svg) # SimpleEditor JS class for creating very simple text/html editor combinated with ```<iframe>``` element.",
+  "main": "gulpfile.js",
+  "bin": {
+    "simpleeditor": "SimpleEditor-min.js"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaandrle/SimpleEditor.git"
+  },
+  "author": "Jan Andrle <andrle.jan@centrum.cz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaandrle/SimpleEditor/issues"
+  },
+  "homepage": "https://github.com/jaandrle/SimpleEditor#readme",
+  "dependencies": {
+    "gulp": ">3.9.1",
+    "gulp-concat": "2.6.1",
+    "gulp-javascript-obfuscator": "1.1.5",
+    "gulp-minify": "3.1.0",
+    "gulp-rename": "1.4.0",
+    "gulp-replace": "1.0.0",
+    "gulp-sourcemaps": "2.6.4",
+    "gulp-util": "3.0.8"
+  }
+}

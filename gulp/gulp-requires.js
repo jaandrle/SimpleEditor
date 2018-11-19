@@ -1,17 +1,18 @@
 /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *//* global module, require */
-module.exports= function(){
+module.exports= function(gulp){
     let gulp_out_list= {};
     let other_out_list= {
         spawn: require('child_process').spawn,
         fs: require('fs')
     };
-    let gulps= ["util","javascript-obfuscator","replace","stylus","concat","sequence","rename","imagemin","sourcemaps"];
+    let gulps= ["util","javascript-obfuscator","replace","concat","rename","sourcemaps"];
     for(let i= 0, i_length= gulps.length; i < i_length; i++){
         gulp_out_list[gulps[i]]= require("gulp-"+gulps[i]);
     }
     gulp_out_list.js_obfuscator= require("gulp-javascript-obfuscator");
     gulp_out_list.minify_js= require('gulp-minify');
     gulp_out_list.css_clean= require('gulp-clean-css');
+    gulp_out_list.sequence= gulp.parallel;
     
     function cssCompress(full){
         if(full) return {level: 1};
