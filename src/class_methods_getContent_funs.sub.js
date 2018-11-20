@@ -1,5 +1,5 @@
-            /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.remove.line
-            /* global editor, _this *///gulp.remove.line
+            /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+            /* global editor, _this */
             _this.getContent= function(){
                 return editor.body.innerHTML.replace(/<br\/?>\s*<\//gim, "</").replace(/<[^\/>][^>]*><\/[^>]+>/gmi, "");
             };

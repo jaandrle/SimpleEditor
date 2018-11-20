@@ -1,6 +1,6 @@
-        /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.remove.line
-        /* global _static *///gulp.remove.line
-        _static.getVersion= function(){ return "gulp.variable.version"; };
+        /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+        /* global _static, gulp_place */
+        _static.getVersion= function(){ return gulp_place("app.version", "variable"); };
         _static.validateLink= validateLink;
 
         function autoResizeArea(editor_element){

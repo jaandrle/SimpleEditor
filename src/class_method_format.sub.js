@@ -1,6 +1,6 @@
-            /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.remove.line
-            /* global prompt */
-            /* global _this, editor, editor_element, toggleTag, getSelectionNodename, getValidationStatus *///gulp.remove.line
+            /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+            /* global prompt *///gulp.keep.line
+            /* global _this, editor, editor_element, toggleTag, getSelectionNodename, getValidationStatus */
             _this.format= function(action, param){
                 editor_element.contentWindow.focus();
                 var selected_value;

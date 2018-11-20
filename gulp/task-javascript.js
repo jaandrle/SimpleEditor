@@ -13,10 +13,8 @@ module.exports= function({app, $gulp_folder, gulp, error, $g, $o, $run}){
             let main_stream;
             if(!code){
                 main_stream= gulp.src([app.src_folder+"*.js", '!'+app.src_folder+'*.sub.js'])
-                    .pipe($g.replace(/\/\/gulp\.place\.(.*)/g,function(s, filename){return $o.fs.readFileSync(app.src_folder+filename, 'utf8').replace(/[^\n]*\/\/gulp\.remove\.line/g, "");}))
-                    .pipe($g.replace(/\/\/gulp\.place\.(.*)/g,function(s, filename){return $o.fs.readFileSync(app.src_folder+filename, 'utf8').replace(/[^\n]*\/\/gulp\.remove\.line/g, "");}))
-                    .pipe($g.replace("gulp.variable.version", app.version))
-                    .pipe($g.replace("gulp.variable.name", app.name));
+                    .pipe(gulp_place({folder: "src/", string_wrapper: '"'}))
+                    .pipe($g.replace("/* gulp *//* global gulp_place */",""));
     
                 main_stream
                     .on('error', error.handler)
@@ -37,4 +35,21 @@ module.exports= function({app, $gulp_folder, gulp, error, $g, $o, $run}){
             }
         }
     };
+
+    function gulp_place({folder= "js/", string_wrapper= '"'}= {}){
+        const gulp_place_regex= /gulp_place\(\s*(?:\"|\')([^\"]*)(?:\"|\')(\s*,\s*(?:\"|\')([^\"]*)(?:\"|\'))?\s*\)(;?)/g;
+        const gulp_remove_line= /[^\n]*\/\/gulp\.remove\.line/g;
+        const gulp_remove_jshint= /[^\n]*(\/\*[^\*]*\*\/)?\/\*\s(jshint|global)[^\*]*\*\/(?!\/\/gulp\.keep\.line)/g;
+        return $g.replace(gulp_place_regex,function(s0, name, s1, type="file", semicol= ""){
+            if(type==="file") return parseFile($o.fs.readFileSync(folder+name, 'utf8').replace(gulp_remove_line, "").replace(gulp_remove_jshint, ""));
+            /* jshint -W061 */else if(type==="variable") return string_wrapper+eval(name)+string_wrapper+semicol;/* jshint +W061 */
+
+            function parseFile(file_data){
+                return file_data.replace(gulp_place_regex, function(s0, name, s1, type="file", semicol= ""){
+                    if(type==="file") return parseFile($o.fs.readFileSync(folder+name, 'utf8').replace(gulp_remove_line, "").replace(gulp_remove_jshint, ""));
+                    /* jshint -W061 */else if(type==="variable") return string_wrapper+eval(name)+string_wrapper+semicol;/* jshint +W061 */
+                });
+            }
+        });
+    }
 };

@@ -1,11 +1,12 @@
-            /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.remove.line
-            /* global console */
-            /* static methods *//* global validators *///gulp.remove.line
-            //gulp.place.class_constructor.sub.js
-            /* global editor *///gulp.remove.line
-            //gulp.place.class_method_format.sub.js
-            //gulp.place.class_methods_getContent_funs.sub.js
-            //gulp.place.class_methods_validations_funs.sub.js
+            /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+            /* global console *///gulp.keep.line
+            /* gulp *//* global gulp_place */
+            /* static methods *//* global validators */
+            gulp_place("class_constructor.sub.js");
+            /* global editor */
+            gulp_place("class_method_format.sub.js");
+            gulp_place("class_methods_getContent_funs.sub.js");
+            gulp_place("class_methods_validations_funs.sub.js");
 
             function getValidationStatus(
                 name, /* _this.format action */

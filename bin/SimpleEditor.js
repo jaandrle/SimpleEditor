@@ -1,5 +1,5 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
-/* global define, module*/
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.keep.line
+/* global define, module*///gulp.keep.line
 (function(module_name, factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -11,7 +11,7 @@
     } else {
         window[module_name] = factory(window, document);
     }
-})("class_SimpleEditor", function(window, document){
+})("class_"+"SimpleEditor", function(window, document){
     'use strict';
     return (function class_SimpleEditor(){
         var _static= {};
@@ -56,7 +56,8 @@
         _static.init= function(def){
             var _this= {};
             
-            /* global console */
+            /* global console *///gulp.keep.line
+
 
             
 
@@ -84,7 +85,7 @@
             };
 
             
-            /* global prompt */
+            /* global prompt *///gulp.keep.line
 
             _this.format= function(action, param){
                 editor_element.contentWindow.focus();

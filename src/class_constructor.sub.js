@@ -1,6 +1,6 @@
-            /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.remove.line
-            /* static methods *//* global validateLink, autoResizeArea *///gulp.remove.line
-            /* global def, setStyles, pasteHandler *///gulp.remove.line
+            /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+            /* static methods *//* global validateLink, autoResizeArea */
+            /* global def, setStyles, pasteHandler */
             var editor_element, default_value;
             if(def.editor_element) editor_element= def.editor_element;
             if(def.default_value) default_value= def.default_value;

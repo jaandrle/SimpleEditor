@@ -1,5 +1,5 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
-/* global define, module*/
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.keep.line
+/* global define, module*///gulp.keep.line
 (function(module_name, factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -11,15 +11,15 @@
     } else {
         window[module_name] = factory(window, document);
     }
-})("class_gulp.variable.name", function(window, document){
-    'use strict';
+})("class_"+gulp_place("app.name", "variable"), function(window, document){
+    'use strict';/* gulp *//* global gulp_place */
     return (function class_SimpleEditor(){
         var _static= {};
-        //gulp.place.class_static.sub.js
+        gulp_place("class_static.sub.js");
         
         _static.init= function(def){
             var _this= {};
-            //gulp.place.class_factory.sub.js
+            gulp_place("class_factory.sub.js");
             return Object.freeze ? Object.freeze(_this) : _this;
         };
         return Object.freeze ? Object.freeze(_static) : _static;
