@@ -16,7 +16,7 @@ module.exports= function({app, $gulp_folder, gulp, $o, $run}){
             for(let i= 0, i_length= app.sequence.length; i < i_length; i++){
                 if(app.sequence[i].charAt(0)!=="!") sequence[sequence.length]= app.sequence[i];
             }
-            gulp.parallel(...sequence)(cb);
+            gulp.series(...sequence)(cb);
         });
     };
 };
