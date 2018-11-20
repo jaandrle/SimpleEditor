@@ -17,7 +17,7 @@
         var _static= {};
         
 
-        _static.getVersion= function(){ return "0.7"; };
+        _static.getVersion= function(){ return "0.7.0"; };
         _static.validateLink= validateLink;
 
         function autoResizeArea(editor_element){

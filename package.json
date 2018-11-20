@@ -1,6 +1,17 @@
 {
-  "name": "simpleeditor",
+  "__SECTION_GULP": "",
+  "fullName": "SimpleEditor",
   "version": "0.7.0",
+  "build": "0001",
+  "src_folder": "src/",
+  "bin_folder": "bin/",
+  "__Comment__sequence": "exclamation mark (!) on the start of task name means to escape it",
+  "sequence": [
+    "javascript"
+  ],
+
+  "__SECTION_NPM": "",
+  "name": "simpleeditor",
   "description": "![IE <=9 - supported](https://img.shields.io/badge/IE%20%3C=9-supported-green.svg) ![IE >9 - tested](https://img.shields.io/badge/IE%20%3E9-tested-brightgreen.svg) ![Firefox - tested](https://img.shields.io/badge/Firefox-tested-brightgreen.svg) ![Chrome - tested](https://img.shields.io/badge/Chrome-tested-brightgreen.svg)  ![Safari - tested](https://img.shields.io/badge/Safari-tested-brightgreen.svg) # SimpleEditor JS class for creating very simple text/html editor combinated with ```<iframe>``` element.",
   "main": "gulpfile.js",
   "bin": {

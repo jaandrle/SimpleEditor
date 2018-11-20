@@ -1,5 +1,5 @@
 /* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *//* global module */
-module.exports= function({app, $gulp_folder, $g, $o, $run}){
+module.exports= function({app, $gulp_folder, gulp, $o, $run}){
     return function(cb){
         $o.fs.readFile($gulp_folder+'gulpfile.log', function(err,data){
             if(err){
@@ -16,7 +16,7 @@ module.exports= function({app, $gulp_folder, $g, $o, $run}){
             for(let i= 0, i_length= app.sequence.length; i < i_length; i++){
                 if(app.sequence[i].charAt(0)!=="!") sequence[sequence.length]= app.sequence[i];
             }
-            $g.sequence(...sequence)(cb);
+            gulp.parallel(...sequence)(cb);
         });
     };
 };
