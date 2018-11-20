@@ -1,5 +1,5 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.keep.line
-/* global define, module*///gulp.keep.line
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+/* global define, module*/
 (function(module_name, factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -15,8 +15,6 @@
     'use strict';
     return (function class_SimpleEditor(){
         var _static= {};
-        
-
         _static.getVersion= function(){ return "0.7.0"; };
         _static.validateLink= validateLink;
 
@@ -55,13 +53,7 @@
         
         _static.init= function(def){
             var _this= {};
-            
             /* global console *///gulp.keep.line
-
-
-            
-
-
             var editor_element, default_value;
             if(def.editor_element) editor_element= def.editor_element;
             if(def.default_value) default_value= def.default_value;
@@ -83,10 +75,7 @@
                     editor_autoresize.add();
                 }
             };
-
-            
             /* global prompt *///gulp.keep.line
-
             _this.format= function(action, param){
                 editor_element.contentWindow.focus();
                 var selected_value;
@@ -175,16 +164,12 @@
                 if(action) editor.execCommand(action, false, selected_value_correction);
                 //else alert(warning_text);
             };
-            
-
             _this.getContent= function(){
                 return editor.body.innerHTML.replace(/<br\/?>\s*<\//gim, "</").replace(/<[^\/>][^>]*><\/[^>]+>/gmi, "");
             };
             _this.getTextContent= function(){
                 return editor.body.innerText; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE some BR cleaner?
             };
-            
-
             _this.setValidationFunction= function(action, fun){ validators[action]= fun; };
             _this.getValidationFunction= function(action){ return validators[action]; };
 

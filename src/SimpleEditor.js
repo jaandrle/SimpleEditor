@@ -1,5 +1,5 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *///gulp.keep.line
-/* global define, module*///gulp.keep.line
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+/* global define, module*/
 (function(module_name, factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
