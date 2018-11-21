@@ -1,5 +1,6 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *//* global module */
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *//* global module, require */
 module.exports= function({app, $gulp_folder, gulp, error, $g, $o, $run}){
+    /* jshint -W061 */const gulp_place= require("./gulp_place.js")({gulp_replace: $g.replace, fs: $o.fs, variable_eval: (str)=> eval(str)});/* jshint +W061 */
     return function(cb){
         let cmd;
         if($run.jshint_advanced){
@@ -35,21 +36,4 @@ module.exports= function({app, $gulp_folder, gulp, error, $g, $o, $run}){
             }
         }
     };
-
-    function gulp_place({folder= "js/", string_wrapper= '"'}= {}){
-        const gulp_place_regex= /( *)gulp_place\(\s*(?:\"|\')([^\"]*)(?:\"|\')(\s*,\s*(?:\"|\')([^\"]*)(?:\"|\'))?\s*\)(;?)/g;
-        const gulp_remove_line= /[^\n]*\/\/gulp\.remove\.line\r?\n/g;
-        const gulp_remove_jshint= /[^\n]*(\/\*[^\*]*\*\/)?\/\*\s(jshint|global)[^\*]*\*\/(?!\/\/gulp\.keep\.line)\r?\n/g;
-        return $g.replace(gulp_place_regex,function(s0, spaces= "", name, s1, type="file", semicol= ""){
-            if(type==="file") return parseFile($o.fs.readFileSync(folder+name, 'utf8').replace(gulp_remove_line, "").replace(gulp_remove_jshint, ""));
-            /* jshint -W061 */else if(type==="variable") return spaces+string_wrapper+eval(name)+string_wrapper+semicol;/* jshint +W061 */
-
-            function parseFile(file_data){
-                return file_data.replace(gulp_place_regex, function(s0, spaces= "", name, s1, type="file", semicol= ""){
-                    if(type==="file") return parseFile($o.fs.readFileSync(folder+name, 'utf8').replace(gulp_remove_line, "").replace(gulp_remove_jshint, ""));
-                    /* jshint -W061 */else if(type==="variable") return spaces+string_wrapper+eval(name)+string_wrapper+semicol;/* jshint +W061 */
-                });
-            }
-        });
-    }
 };
