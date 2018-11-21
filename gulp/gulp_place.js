@@ -1,8 +1,10 @@
 "use stric";
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
-/* global module */
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true *//* global module */
 /*  @module
         gulp_place
+    @depends_on
+        'gulp-replace'
+        'fs'
     @version
         0.3.0
     @examples
