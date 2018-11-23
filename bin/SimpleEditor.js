@@ -17,7 +17,7 @@
         var _static= {};
         _static.getVersion= function(){ return "0.7.0"; };
         _static.validateLink= validateLink;
-
+        
         function autoResizeArea(editor_element){
             var local_autoResizeArea= {
                 add: function(){
@@ -51,6 +51,7 @@
             return /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.?)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(\:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/igm.test(str); //https://www.regextester.com/94502
         }
         
+        
         _static.init= function(def){
             var _this= {};
             /* global console *///gulp.keep.line
@@ -59,7 +60,7 @@
             if(def.default_value) default_value= def.default_value;
             var validators= {createLink: validateLink};
             var editor, editor_autoresize;
-
+            
             editor_element.contentWindow.location.reload();
             editor_element.onload= function(){
                 editor= editor_element.contentDocument;
@@ -75,6 +76,7 @@
                     editor_autoresize.add();
                 }
             };
+            
             /* global prompt *///gulp.keep.line
             _this.format= function(action, param){
                 editor_element.contentWindow.focus();
@@ -164,15 +166,18 @@
                 if(action) editor.execCommand(action, false, selected_value_correction);
                 //else alert(warning_text);
             };
+            
             _this.getContent= function(){
                 return editor.body.innerHTML.replace(/<br\/?>\s*<\//gim, "</").replace(/<[^\/>][^>]*><\/[^>]+>/gmi, "");
             };
             _this.getTextContent= function(){
                 return editor.body.innerText; //DELETE .replace(/(<!--((?!-->).|\n)+-->)/gm,"").replace(/(<[^\/<> ]+) [^>]+(>|$)/g, "$1>"); //DELETE some BR cleaner?
             };
+            
             _this.setValidationFunction= function(action, fun){ validators[action]= fun; };
             _this.getValidationFunction= function(action){ return validators[action]; };
-
+            
+            
             function getValidationStatus(
                 name, /* _this.format action */
                 candidate /* value for checking */
@@ -252,6 +257,7 @@
                 style_el.appendChild(document.createTextNode(styles));
                 editor.head.appendChild(style_el);
             }
+            
             return Object.freeze ? Object.freeze(_this) : _this;
         };
         return Object.freeze ? Object.freeze(_static) : _static;
