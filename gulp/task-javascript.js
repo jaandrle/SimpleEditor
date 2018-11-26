@@ -3,13 +3,9 @@ module.exports= function({app, $gulp_folder, gulp, error, $g, $o, $run}){
     /* jshint -W061 */const gulp_place= require("./gulp_place.js")({gulp_replace: $g.replace, fs: $o.fs, variable_eval: (str)=> eval(str)});/* jshint +W061 */
     return function(cb){
         let cmd;
-        if($run.jshint_advanced){
-            cmd= $o.spawn($run.jshint_advanced, [app.src_folder], {});
-            cmd.stdout.on('data', function(data){ error.addText(data.toString()+"\n"); });
-            cmd.on('close', run);
-        } else {
-            run(0);
-        }
+        cmd= $o.spawn("node", ['node_modules/jshint/bin/jshint', 'js/'], {});
+        cmd.stdout.on('data', function(data){ error.addText(data.toString()+"\n"); });
+        cmd.on('close', run);
         function run(code){
             let main_stream;
             if(!code){

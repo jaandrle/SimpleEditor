@@ -9,7 +9,6 @@
   "sequence": [
     "javascript"
   ],
-
   "__SECTION_NPM": "",
   "name": "simpleeditor",
   "description": "![IE <=9 - supported](https://img.shields.io/badge/IE%20%3C=9-supported-green.svg) ![IE >9 - tested](https://img.shields.io/badge/IE%20%3E9-tested-brightgreen.svg) ![Firefox - tested](https://img.shields.io/badge/Firefox-tested-brightgreen.svg) ![Chrome - tested](https://img.shields.io/badge/Chrome-tested-brightgreen.svg)  ![Safari - tested](https://img.shields.io/badge/Safari-tested-brightgreen.svg) # SimpleEditor JS class for creating very simple text/html editor combinated with ```<iframe>``` element.",
@@ -41,6 +40,13 @@
     "gulp-rename": "1.4.0",
     "gulp-replace": "1.0.0",
     "gulp-sourcemaps": "2.6.4",
-    "gulp-util": "3.0.8"
+    "gulp-util": "3.0.8",
+    "jshint": "~2.9.6"
+  },
+  "__SECTION__JSHINT": "",
+  "jshintConfig": {
+    "esversion": 6,
+    "browser": "true",
+    "undef": "true"
   }
 }
