@@ -1,4 +1,4 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true, maxdepth: 3 */
 /* global console *///gulp.keep.line
 /* gulp *//* global gulp_place */
 /* static methods *//* global validators */

@@ -1,4 +1,4 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true, maxcomplexity: 26, maxdepth: 3 */
 /* global prompt *///gulp.keep.line
 /* global _this, editor, editor_element, toggleTag, getSelectionNodename, getValidationStatus */
 _this.format= function(action, param){
