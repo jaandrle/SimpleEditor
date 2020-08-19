@@ -1,4 +1,4 @@
-/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true */
+/* jshint esversion: 6,-W097, -W040, browser: true, expr: true, undef: true, maxcomplexity: 25, maxdepth: 3 */
 /* global define, module*/
 (function(module_name, factory) {
     'use strict';
@@ -11,11 +11,10 @@
     } else {
         window[module_name] = factory(window, document);
     }
-})("class_"+"SimpleEditor", function(window, document){
-    'use strict';
+})("class_"+"simpleeditor", function(window, document){
     return (function class_SimpleEditor(){
         var _static= {};
-        _static.getVersion= function(){ return "0.7.0"; };
+        _static.getVersion= function(){ return "0.7.1"; };
         _static.validateLink= validateLink;
         
         function autoResizeArea(editor_element){

@@ -1,52 +1,78 @@
 {
-  "__SECTION_GULP": "",
-  "fullName": "SimpleEditor",
-  "version": "0.7.0",
-  "build": "0001",
-  "src_folder": "src/",
-  "bin_folder": "bin/",
-  "__Comment__sequence": "exclamation mark (!) on the start of task name means to escape it",
-  "sequence": [
-    "javascript"
-  ],
-  "__SECTION_NPM": "",
-  "name": "simpleeditor",
-  "description": "![IE <=9 - supported](https://img.shields.io/badge/IE%20%3C=9-supported-green.svg) ![IE >9 - tested](https://img.shields.io/badge/IE%20%3E9-tested-brightgreen.svg) ![Firefox - tested](https://img.shields.io/badge/Firefox-tested-brightgreen.svg) ![Chrome - tested](https://img.shields.io/badge/Chrome-tested-brightgreen.svg)  ![Safari - tested](https://img.shields.io/badge/Safari-tested-brightgreen.svg) # SimpleEditor JS class for creating very simple text/html editor combinated with ```<iframe>``` element.",
-  "main": "gulpfile.js",
-  "bin": {
-    "simpleeditor": "SimpleEditor-min.js"
-  },
-  "directories": {
-    "example": "example"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jaandrle/SimpleEditor.git"
-  },
-  "author": "Jan Andrle <andrle.jan@centrum.cz>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jaandrle/SimpleEditor/issues"
-  },
-  "homepage": "https://github.com/jaandrle/SimpleEditor#readme",
-  "dependencies": {
-    "gulp": ">3.9.1",
-    "gulp-concat": "2.6.1",
-    "gulp-javascript-obfuscator": "1.1.5",
-    "gulp-minify": "3.1.0",
-    "gulp-rename": "1.4.0",
-    "gulp-replace": "1.0.0",
-    "gulp-sourcemaps": "2.6.4",
-    "gulp-util": "3.0.8",
-    "jshint": "~2.9.6"
-  },
-  "__SECTION__JSHINT": "",
-  "jshintConfig": {
-    "esversion": 6,
-    "browser": "true",
-    "undef": "true"
-  }
+    "__SECTION_GULP": "",
+    "fullName": "SimpleEditor",
+    "version": "0.7.1",
+    "build": "0001",
+    "__Comment__sequence": "exclamation mark (!) on the start of task name means to escape it",
+    "sequence": [
+        "javascript"
+    ],
+    "__SECTION_NPM": "",
+    "name": "simpleeditor",
+    "description": "![IE <=9 - supported](https://img.shields.io/badge/IE%20%3C=9-supported-green.svg) ![IE >9 - tested](https://img.shields.io/badge/IE%20%3E9-tested-brightgreen.svg) ![Firefox - tested](https://img.shields.io/badge/Firefox-tested-brightgreen.svg) ![Chrome - tested](https://img.shields.io/badge/Chrome-tested-brightgreen.svg)  ![Safari - tested](https://img.shields.io/badge/Safari-tested-brightgreen.svg) # SimpleEditor JS class for creating very simple text/html editor combinated with ```<iframe>``` element.",
+    "main": "gulpfile.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "gulp": "gulp",
+        "jshint": "node ./node_modules/jshint/bin/jshint --verbose",
+        "jshint_full": "node ./node_modules/jshint/bin/jshint --verbose --show-non-errors"
+    },
+    "bin": {
+        "simpleeditor": "SimpleEditor-min.js"
+    },
+    "directories": {
+        "src": "src/",
+        "bin": "bin/",
+        "gulp": "gulp/",
+        "example": "example"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jaandrle/SimpleEditor.git"
+    },
+    "author": "Jan Andrle <andrle.jan@centrum.cz>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jaandrle/SimpleEditor/issues"
+    },
+    "homepage": "https://github.com/jaandrle/SimpleEditor#readme",
+    "jaaJBT": {
+        "config": {
+            "gulp_tasks": "gulp/tasks/",
+            "gulp_path": "gulp/"
+        },
+        "resourses": [
+            "https://raw.githubusercontent.com/jaandrle/jaaJBT/master/"
+        ],
+        "scripts": {
+            "gulpfile": "~1.1.3",
+            "gulp_cleanJSHINT": "~0.1.3",
+            "gulp_task_javascript": "~0.1.3",
+            "gulp_task_default": "~1.0.1"
+        },
+        "rename": {}
+    },
+    "devDependencies": {
+        "gulp": ">3.9.1",
+        "gulp-concat": "2.6.1",
+        "gulp-minify": "3.1.0",
+        "gulp-place": "^1.7.0",
+        "gulp-rename": "1.4.0",
+        "gulp-replace": "1.0.0",
+        "gulp-sourcemaps": "2.6.4",
+        "gulp-util": "3.0.8",
+        "jshint": "^2.12.0"
+    },
+    "jshintConfig": {
+        "esversion": 6,
+        "browser": "true",
+        "undef": "true",
+        "latedef": "true",
+        "maxparams": 3,
+        "maxdepth": 2,
+        "maxcomplexity": 10,
+        "globals": {
+            "gulp_place": false
+        }
+    }
 }
